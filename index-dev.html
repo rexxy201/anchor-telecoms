@@ -134,15 +134,16 @@
   #nav.scrolled{ background:rgba(11,31,58,0.94); backdrop-filter:blur(6px); box-shadow:0 8px 30px -10px rgba(0,0,0,.4); padding:14px 0;}
   #nav .wrap{ display:flex; align-items:center; justify-content:space-between; }
   .brand{ display:flex; align-items:center; gap:14px; }
-  .logo-mark{ position:relative; display:inline-flex; align-items:center; }
-  /* Soft, edgeless glow behind the logo mark — hero (unscrolled nav) only.
-     The blur removes any visible boundary so there's no hard-edged halo. */
-  #nav:not(.scrolled) .logo-mark::before{
-    content:""; position:absolute; inset:-22px -18px; z-index:-1; pointer-events:none;
-    background:radial-gradient(circle at 40% 48%, rgba(150,178,236,.28) 0%, rgba(150,178,236,.14) 34%, rgba(150,178,236,.05) 58%, rgba(150,178,236,0) 78%);
-    filter:blur(8px);
-  }
   .brand-logo-white{ height:56px; width:auto; display:block; }
+  /* White glow that traces the logo's own silhouette (hero/unscrolled nav
+     only) — drop-shadow reads the image's alpha channel, so it hugs the
+     actual mark shape rather than sitting in a generic box behind it. */
+  #nav:not(.scrolled) .brand-logo-white{
+    filter:
+      drop-shadow(0 0 3px rgba(255,255,255,.75))
+      drop-shadow(0 0 10px rgba(255,255,255,.45))
+      drop-shadow(0 0 22px rgba(255,255,255,.22));
+  }
   .brand .tag{ font-family:'Poppins',sans-serif; font-weight:400; font-style:italic; color:var(--muted-lt); font-size:11px; letter-spacing:1px; }
   #nav ul{ display:flex; gap:34px; align-items:center; }
   #nav ul a{ font-family:'Poppins',sans-serif; font-size:13.5px; font-weight:500; color:#DCE5F2; letter-spacing:.3px; position:relative; padding:4px 0;}
@@ -375,7 +376,7 @@
 <nav id="nav">
   <div class="wrap">
     <a href="index.html" class="brand">
-      <span class="logo-mark"><img src="assets/images/anchor_logo_full_white.png" alt="Anchor Telecoms" class="brand-logo-white"></span>
+      <img src="assets/images/anchor_logo_full_white.png" alt="Anchor Telecoms" class="brand-logo-white">
       <div class="tag">Professionally Driven</div>
     </a>
     <ul class="links">
