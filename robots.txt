@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://rexxy201.github.io/anchor-telecoms/sitemap.xml

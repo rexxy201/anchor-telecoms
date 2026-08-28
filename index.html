@@ -5,10 +5,63 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Anchor Telecoms | Engineering Africa's Digital Infrastructure</title>
 <meta name="description" content="Anchor Telecoms is a Pan-African telecom engineering company delivering civil construction, network implementation, fibre deployment, power systems and managed services since 2005.">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta name="theme-color" content="#24397C">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; script-src 'self'; media-src 'self' https://anchortelecoms.com; base-uri 'self'">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<link rel="canonical" href="https://rexxy201.github.io/anchor-telecoms/">
 <link rel="icon" href="assets/images/anchor_logo_mark.png">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Anchor Telecoms">
+<meta property="og:title" content="Anchor Telecoms | Engineering Africa's Digital Infrastructure">
+<meta property="og:description" content="Pan-African telecom engineering company delivering civil construction, network implementation, fibre deployment, power systems and managed services since 2005.">
+<meta property="og:url" content="https://rexxy201.github.io/anchor-telecoms/">
+<meta property="og:image" content="https://rexxy201.github.io/anchor-telecoms/assets/images/anchor_logo_full.png">
+<meta property="og:locale" content="en_US">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Anchor Telecoms | Engineering Africa's Digital Infrastructure">
+<meta name="twitter:description" content="Pan-African telecom engineering company delivering civil construction, network implementation, fibre deployment, power systems and managed services since 2005.">
+<meta name="twitter:image" content="https://rexxy201.github.io/anchor-telecoms/assets/images/anchor_logo_full.png">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,700;0,800;1,500&family=Lora:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+
+<!-- Structured Data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Anchor Telecoms",
+  "url": "https://rexxy201.github.io/anchor-telecoms/",
+  "logo": "https://rexxy201.github.io/anchor-telecoms/assets/images/anchor_logo_full.png",
+  "description": "Pan-African telecom engineering company delivering civil construction, network implementation, fibre deployment, power systems and managed services since 2005.",
+  "foundingDate": "2005",
+  "email": "anchorng@anchortelecoms.com",
+  "telephone": "+234-1-2952414",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Plot 870B Bendel Close, off Bishop Aboyade Cole Street",
+    "addressLocality": "Victoria Island, Lagos",
+    "addressCountry": "NG"
+  },
+  "sameAs": [],
+  "areaServed": "Africa"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Anchor Telecoms",
+  "url": "https://rexxy201.github.io/anchor-telecoms/"
+}
+</script>
 <style>
   :root{
     --navy:#24397C;
@@ -312,21 +365,21 @@
       <li><a href="#team">Team</a></li>
     </ul>
     <a href="#contact" class="cta">Get In Touch</a>
-    <button class="burger" onclick="document.getElementById('mobileMenu').classList.add('open')" aria-label="Open menu">
+    <button class="burger" id="burgerBtn" aria-label="Open menu">
       <span></span><span></span><span></span>
     </button>
   </div>
 </nav>
 
 <div id="mobileMenu">
-  <button class="close" onclick="document.getElementById('mobileMenu').classList.remove('open')" aria-label="Close menu">&times;</button>
-  <a href="#about" onclick="document.getElementById('mobileMenu').classList.remove('open')">About</a>
-  <a href="#footprint" onclick="document.getElementById('mobileMenu').classList.remove('open')">Footprint</a>
-  <a href="#services" onclick="document.getElementById('mobileMenu').classList.remove('open')">Services</a>
-  <a href="#projects" onclick="document.getElementById('mobileMenu').classList.remove('open')">Projects</a>
-  <a href="#clients" onclick="document.getElementById('mobileMenu').classList.remove('open')">Clients</a>
-  <a href="#team" onclick="document.getElementById('mobileMenu').classList.remove('open')">Team</a>
-  <a href="#contact" onclick="document.getElementById('mobileMenu').classList.remove('open')">Contact</a>
+  <button class="close" id="mobileMenuClose" aria-label="Close menu">&times;</button>
+  <a href="#about" class="mobile-link">About</a>
+  <a href="#footprint" class="mobile-link">Footprint</a>
+  <a href="#services" class="mobile-link">Services</a>
+  <a href="#projects" class="mobile-link">Projects</a>
+  <a href="#clients" class="mobile-link">Clients</a>
+  <a href="#team" class="mobile-link">Team</a>
+  <a href="#contact" class="mobile-link">Contact</a>
 </div>
 
 <header id="hero">
@@ -2868,7 +2921,7 @@
       <div class="cinfo-row"><div class="ic"><img src="assets/images/icon_phone.png" alt=""></div><div>+234-1-2952414 &nbsp;/&nbsp; +234 (0) 817 216 3933</div></div>
       <div class="cinfo-row"><div class="ic"><img src="assets/images/icon_location.png" alt=""></div><div>Plot 870B Bendel Close, off Bishop Aboyade Cole Street,<br>Victoria Island, Lagos &mdash; Nigeria</div></div>
     </div>
-    <form class="contact-form" onsubmit="event.preventDefault(); this.querySelector('.form-msg').style.display='block';">
+    <form class="contact-form" id="contactForm">
       <input type="text" placeholder="Your Name" required>
       <input type="email" placeholder="Your Email" required>
       <input type="text" placeholder="Company">
@@ -2899,69 +2952,7 @@
   </div>
 </footer>
 
-<script>
-  // sticky nav shadow
-  const nav = document.getElementById('nav');
-  window.addEventListener('scroll', () => {
-    if (window.scrollY > 40) nav.classList.add('scrolled');
-    else nav.classList.remove('scrolled');
-  });
-
-  // respect reduced-motion preference for hero video
-  const heroVideo = document.getElementById('heroVideo');
-  if (heroVideo && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-    heroVideo.pause();
-    heroVideo.removeAttribute('autoplay');
-  }
-
-  // count-up animation for project counters
-  const counters = document.querySelectorAll('#counters .cval');
-  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  function animateCount(el) {
-    const target = parseInt(el.getAttribute('data-target'), 10);
-    if (reduceMotion) { el.textContent = target.toLocaleString(); return; }
-    const duration = 1600;
-    const start = performance.now();
-    function tick(now) {
-      const progress = Math.min((now - start) / duration, 1);
-      const eased = 1 - Math.pow(1 - progress, 3);
-      el.textContent = Math.round(eased * target).toLocaleString();
-      if (progress < 1) requestAnimationFrame(tick);
-      else el.textContent = target.toLocaleString();
-    }
-    requestAnimationFrame(tick);
-  }
-  const counterSection = document.getElementById('counters');
-  if (counterSection) {
-    const cio = new IntersectionObserver((entries) => {
-      entries.forEach(e => {
-        if (e.isIntersecting) {
-          counters.forEach(animateCount);
-          cio.unobserve(e.target);
-        }
-      });
-    }, { threshold: 0.3 });
-    cio.observe(counterSection);
-  }
-
-  // scroll-reveal fade-in
-  const revealEls = document.querySelectorAll('section');
-  const io = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        e.target.style.opacity = 1;
-        e.target.style.transform = 'translateY(0)';
-        io.unobserve(e.target);
-      }
-    });
-  }, { threshold: 0.08 });
-  revealEls.forEach(el => {
-    el.style.opacity = 0;
-    el.style.transform = 'translateY(24px)';
-    el.style.transition = 'opacity .7s ease, transform .7s ease';
-    io.observe(el);
-  });
-</script>
+<script src="assets/js/main.js" defer></script>
 
 </body>
 </html>
