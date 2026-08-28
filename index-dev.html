@@ -354,6 +354,9 @@
   .contact-form input::placeholder, .contact-form textarea::placeholder{ color:#8FA0B8; }
   .contact-form textarea{ min-height:120px; resize:vertical; }
   .contact-form button{ width:100%; justify-content:center; border:none; }
+  .contact-form button[disabled]{ opacity:.6; cursor:not-allowed; }
+  .contact-form .hp-field{ position:absolute; left:-9999px; width:1px; height:1px; overflow:hidden; opacity:0; }
+  .form-msg-error{ color:#FF8A8A !important; }
   @media(max-width:900px){ .contact-grid{ flex-direction:column; } .contact-info{ width:100%; } }
 
   /* ---------- FOOTER ---------- */
@@ -2940,13 +2943,15 @@
       <div class="cinfo-row"><div class="ic"><img src="assets/images/icon_phone.png" alt=""></div><div>+234-1-2952414 &nbsp;/&nbsp; +234 (0) 817 216 3933</div></div>
       <div class="cinfo-row"><div class="ic"><img src="assets/images/icon_location.png" alt=""></div><div>Plot 870B Bendel Close, off Bishop Aboyade Cole Street,<br>Victoria Island, Lagos &mdash; Nigeria</div></div>
     </div>
-    <form class="contact-form" id="contactForm">
-      <input type="text" placeholder="Your Name" required>
-      <input type="email" placeholder="Your Email" required>
-      <input type="text" placeholder="Company">
-      <textarea placeholder="Tell us about your project"></textarea>
+    <form class="contact-form" id="contactForm" novalidate>
+      <input type="text" name="name" placeholder="Your Name" required>
+      <input type="email" name="email" placeholder="Your Email" required>
+      <input type="text" name="company" placeholder="Company">
+      <textarea name="message" placeholder="Tell us about your project" required></textarea>
+      <input type="text" name="website" class="hp-field" tabindex="-1" autocomplete="off" aria-hidden="true">
       <button type="submit" class="btn btn-primary">Send Message</button>
-      <p class="form-msg" style="display:none; color:var(--accent); font-size:13px; margin-top:14px; margin-bottom:0; text-align:center;">Thanks &mdash; your message has been noted. We'll be in touch shortly.</p>
+      <p class="form-msg form-msg-success" style="display:none; color:var(--accent); font-size:13px; margin-top:14px; margin-bottom:0; text-align:center;">Thanks &mdash; your message has been noted. We'll be in touch shortly.</p>
+      <p class="form-msg form-msg-error" style="display:none; font-size:13px; margin-top:14px; margin-bottom:0; text-align:center;">Something went wrong sending your message. Please try again, or email us directly at anchorng@anchortelecoms.com.</p>
     </form>
   </div>
 </section>

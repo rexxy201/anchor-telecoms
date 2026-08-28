@@ -6,13 +6,41 @@ document.querySelectorAll('.mobile-link').forEach(link => {
   link.addEventListener('click', () => mobileMenu.classList.remove('open'));
 });
 
-// contact form (client-side only; no backend wired up)
+// contact form -> contact.php (PHP mail handler)
 const contactForm = document.getElementById('contactForm');
 if (contactForm) {
-  contactForm.addEventListener('submit', (event) => {
+  const successMsg = contactForm.querySelector('.form-msg-success');
+  const errorMsg = contactForm.querySelector('.form-msg-error');
+  const submitBtn = contactForm.querySelector('button[type="submit"]');
+
+  contactForm.addEventListener('submit', async (event) => {
     event.preventDefault();
-    const msg = contactForm.querySelector('.form-msg');
-    if (msg) msg.style.display = 'block';
+    if (successMsg) successMsg.style.display = 'none';
+    if (errorMsg) errorMsg.style.display = 'none';
+
+    const originalLabel = submitBtn.textContent;
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Sending…';
+
+    try {
+      const res = await fetch('contact.php', {
+        method: 'POST',
+        body: new FormData(contactForm),
+        headers: { Accept: 'application/json' }
+      });
+      const data = await res.json().catch(() => ({ ok: false }));
+      if (res.ok && data.ok) {
+        contactForm.reset();
+        if (successMsg) successMsg.style.display = 'block';
+      } else if (errorMsg) {
+        errorMsg.style.display = 'block';
+      }
+    } catch (err) {
+      if (errorMsg) errorMsg.style.display = 'block';
+    } finally {
+      submitBtn.disabled = false;
+      submitBtn.textContent = originalLabel;
+    }
   });
 }
 
