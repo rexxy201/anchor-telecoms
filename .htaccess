@@ -15,8 +15,10 @@
   RewriteCond %{HTTP_HOST} ^anchortelecoms\.com [NC]
   RewriteRule ^(.*)$ https://www.anchortelecoms.com/$1 [L,R=301]
 
-  # Flag the dev/test subdomain so it can be kept out of search results below
-  RewriteCond %{HTTP_HOST} ^dev\.anchortelecoms\.com$ [NC]
+  # Flag the dev/test subdomain so it can be kept out of search results below.
+  # Matches any "dev." subdomain (currently dev.mangonetonline.com; also
+  # covers dev.anchortelecoms.com if the test site ever moves there).
+  RewriteCond %{HTTP_HOST} ^dev\. [NC]
   RewriteRule ^ - [E=IS_DEV_HOST:1]
 </IfModule>
 
@@ -36,7 +38,7 @@
 
 # ---- Serve a locked-down robots.txt on the dev/test subdomain ----
 <IfModule mod_rewrite.c>
-  RewriteCond %{HTTP_HOST} ^dev\.anchortelecoms\.com$ [NC]
+  RewriteCond %{HTTP_HOST} ^dev\. [NC]
   RewriteCond %{REQUEST_URI} ^/robots\.txt$
   RewriteRule ^ /robots-dev.txt [L]
 </IfModule>
