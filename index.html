@@ -124,9 +124,12 @@
   #nav .wrap{ display:flex; align-items:center; justify-content:space-between; }
   .brand{ display:flex; align-items:center; gap:14px; }
   .logo-mark{ position:relative; display:inline-flex; align-items:center; }
-  .logo-mark::before{
-    content:""; position:absolute; inset:-16px -12px; z-index:-1; pointer-events:none;
-    background:radial-gradient(ellipse at 38% 50%, rgba(150,178,236,.38) 0%, rgba(150,178,236,.16) 42%, rgba(150,178,236,0) 74%);
+  /* Soft, edgeless glow behind the logo mark — hero (unscrolled nav) only.
+     The blur removes any visible boundary so there's no hard-edged halo. */
+  #nav:not(.scrolled) .logo-mark::before{
+    content:""; position:absolute; inset:-22px -18px; z-index:-1; pointer-events:none;
+    background:radial-gradient(circle at 40% 48%, rgba(150,178,236,.28) 0%, rgba(150,178,236,.14) 34%, rgba(150,178,236,.05) 58%, rgba(150,178,236,0) 78%);
+    filter:blur(8px);
   }
   .brand-logo-white{ height:56px; width:auto; display:block; }
   .brand .tag{ font-family:'Poppins',sans-serif; font-weight:400; font-style:italic; color:var(--muted-lt); font-size:11px; letter-spacing:1px; }
@@ -357,7 +360,7 @@
 
 <nav id="nav">
   <div class="wrap">
-    <a href="#hero" class="brand">
+    <a href="index.html" class="brand">
       <span class="logo-mark"><img src="assets/images/anchor_logo_full_white.png" alt="Anchor Telecoms" class="brand-logo-white"></span>
       <div class="tag">Professionally Driven</div>
     </a>
@@ -2941,7 +2944,7 @@
   <div class="wrap">
     <div class="foot-top">
       <div class="foot-brandline">
-        <span class="logo-mark"><img src="assets/images/anchor_logo_full_white.png" alt="Anchor Telecoms" class="brand-logo-white"></span>
+        <img src="assets/images/anchor_logo_full_white.png" alt="Anchor Telecoms" class="brand-logo-white">
       </div>
       <div class="flinks">
         <a href="#about">About</a>
