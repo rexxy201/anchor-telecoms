@@ -1,7 +1,7 @@
-# NOTE: GitHub Pages is served by GitHub's own edge servers (not Apache),
-# so this file has NO EFFECT while hosted on github.io / GitHub Pages.
-# It activates automatically if this site is ever moved to an Apache host
-# (cPanel, shared hosting, etc.). Kept here so the config travels with the repo.
+# Production config for cPanel/Apache hosting at www.anchortelecoms.com.
+# NOTE: this file has NO EFFECT on GitHub Pages (github.io) — GitHub Pages is
+# served by GitHub's own edge servers, not Apache. It only activates once
+# this repo is deployed to the cPanel/Apache host.
 
 # ---- HTTPS + canonical host enforcement ----
 <IfModule mod_rewrite.c>
@@ -11,9 +11,9 @@
   RewriteCond %{HTTPS} off
   RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
-  # Force non-www -> www is NOT assumed; adjust to your canonical domain if you add a custom domain
-  # RewriteCond %{HTTP_HOST} ^www\.example\.com [NC]
-  # RewriteRule ^(.*)$ https://example.com/$1 [L,R=301]
+  # Force non-www -> www (canonical domain is www.anchortelecoms.com)
+  RewriteCond %{HTTP_HOST} ^anchortelecoms\.com [NC]
+  RewriteRule ^(.*)$ https://www.anchortelecoms.com/$1 [L,R=301]
 </IfModule>
 
 # ---- Security headers ----
