@@ -1,3 +1,11 @@
+<!--
+  DEV-ONLY BUILD — served in place of index.html when the request host is
+  "dev.*" (see .htaccess). Only the meta block below differs from
+  index.html (dev-domain canonical/OG/Twitter/JSON-LD + noindex), so that
+  link-preview cards render correctly while testing on the dev subdomain.
+  IMPORTANT: keep this file's <body>/<style>/<script> in sync with
+  index.html whenever the production file changes.
+-->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,7 +13,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Anchor Telecoms | Engineering Africa's Digital Infrastructure</title>
 <meta name="description" content="Anchor Telecoms is a Pan-African telecom engineering company delivering civil construction, network implementation, fibre deployment, power systems and managed services since 2005.">
-<meta name="robots" content="index, follow, max-image-preview:large">
+<meta name="robots" content="noindex, nofollow">
 <meta name="theme-color" content="#24397C">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; script-src 'self'; media-src 'self'; base-uri 'self'">
@@ -13,13 +21,13 @@
 <link rel="canonical" href="https://www.anchortelecoms.com/">
 <link rel="icon" href="assets/images/anchor_logo_mark.png">
 
-<!-- Open Graph -->
+<!-- Open Graph (dev domain, so link-preview cards can fetch the image) -->
 <meta property="og:type" content="website">
-<meta property="og:site_name" content="Anchor Telecoms">
+<meta property="og:site_name" content="Anchor Telecoms (Dev)">
 <meta property="og:title" content="Anchor Telecoms | Engineering Africa's Digital Infrastructure">
 <meta property="og:description" content="Pan-African telecom engineering company delivering civil construction, network implementation, fibre deployment, power systems and managed services since 2005.">
-<meta property="og:url" content="https://www.anchortelecoms.com/">
-<meta property="og:image" content="https://www.anchortelecoms.com/assets/images/anchor_logo_full.png">
+<meta property="og:url" content="https://dev.mangonetonline.com/">
+<meta property="og:image" content="https://dev.mangonetonline.com/assets/images/anchor_logo_full.png">
 <meta property="og:image:width" content="2134">
 <meta property="og:image:height" content="1679">
 <meta property="og:image:alt" content="Anchor Telecoms logo">
@@ -29,20 +37,20 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Anchor Telecoms | Engineering Africa's Digital Infrastructure">
 <meta name="twitter:description" content="Pan-African telecom engineering company delivering civil construction, network implementation, fibre deployment, power systems and managed services since 2005.">
-<meta name="twitter:image" content="https://www.anchortelecoms.com/assets/images/anchor_logo_full.png">
+<meta name="twitter:image" content="https://dev.mangonetonline.com/assets/images/anchor_logo_full.png">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,700;0,800;1,500&family=Lora:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
 
-<!-- Structured Data -->
+<!-- Structured Data (dev domain) -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Organization",
   "name": "Anchor Telecoms",
-  "url": "https://www.anchortelecoms.com/",
-  "logo": "https://www.anchortelecoms.com/assets/images/anchor_logo_full.png",
+  "url": "https://dev.mangonetonline.com/",
+  "logo": "https://dev.mangonetonline.com/assets/images/anchor_logo_full.png",
   "description": "Pan-African telecom engineering company delivering civil construction, network implementation, fibre deployment, power systems and managed services since 2005.",
   "foundingDate": "2005",
   "email": "anchorng@anchortelecoms.com",
@@ -62,7 +70,7 @@
   "@context": "https://schema.org",
   "@type": "WebSite",
   "name": "Anchor Telecoms",
-  "url": "https://www.anchortelecoms.com/"
+  "url": "https://dev.mangonetonline.com/"
 }
 </script>
 <style>

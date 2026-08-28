@@ -43,6 +43,15 @@
   RewriteRule ^ /robots-dev.txt [L]
 </IfModule>
 
+# ---- Serve index-dev.html (dev-domain OG/Twitter/canonical tags, so link
+# preview cards can fetch the logo image) in place of index.html on the
+# dev/test subdomain. Keep index-dev.html's body in sync with index.html —
+# see the comment at the top of that file.
+<IfModule mod_rewrite.c>
+  RewriteCond %{HTTP_HOST} ^dev\. [NC]
+  RewriteRule ^(index\.html)?$ /index-dev.html [L]
+</IfModule>
+
 # ---- Disable directory listing ----
 Options -Indexes
 
