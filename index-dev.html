@@ -359,7 +359,10 @@
   footer .flinks{ display:flex; gap:26px; flex-wrap:wrap; }
   footer .flinks a{ font-family:'Poppins',sans-serif; font-size:13px; color:#9FB0C9; }
   footer .flinks a:hover{ color:#fff; }
-  footer .copyright{ font-size:12.5px; text-align:center; }
+  footer .copyright{ display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px; font-size:12.5px; }
+  footer .copyright .credit{ color:#7E93B5; }
+  footer .copyright .credit a{ color:#9FB0C9; }
+  footer .copyright .credit a:hover{ color:#fff; }
 </style>
 </head>
 <body>
@@ -2934,7 +2937,10 @@
         <a href="#contact">Contact</a>
       </div>
     </div>
-    <div class="copyright">&copy; 2026 Anchor Telecoms Nigeria Limited. All Rights Reserved. &mdash; Professionally Driven.</div>
+    <div class="copyright">
+      <span>&copy; 2026 Anchor Telecoms Nigeria Limited. All Rights Reserved. &mdash; Professionally Driven.</span>
+      <span class="credit">Powered by <a href="https://mangonet.com.ng/solutions" target="_blank" rel="noopener">Mangonet Solutions</a></span>
+    </div>
   </div>
 </footer>
 
