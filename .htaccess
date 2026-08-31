@@ -1,7 +1,6 @@
-# Production config for cPanel/Apache hosting at www.anchortelecoms.com.
-# NOTE: this file has NO EFFECT on GitHub Pages (github.io) — GitHub Pages is
-# served by GitHub's own edge servers, not Apache. It only activates once
-# this repo is deployed to the cPanel/Apache host.
+# Production config for cPanel/Apache (LiteSpeed) hosting at
+# www.anchortelecoms.com. The dev/test subdomain has been retired — this
+# file no longer carries any dev-host-specific branching.
 
 # ---- HTTPS + canonical host enforcement ----
 <IfModule mod_rewrite.c>
@@ -14,12 +13,6 @@
   # Force non-www -> www (canonical domain is www.anchortelecoms.com)
   RewriteCond %{HTTP_HOST} ^anchortelecoms\.com [NC]
   RewriteRule ^(.*)$ https://www.anchortelecoms.com/$1 [L,R=301]
-
-  # Flag the dev/test subdomain so it can be kept out of search results below.
-  # Matches any "dev." subdomain (currently dev.mangonetonline.com; also
-  # covers dev.anchortelecoms.com if the test site ever moves there).
-  RewriteCond %{HTTP_HOST} ^dev\. [NC]
-  RewriteRule ^ - [E=IS_DEV_HOST:1]
 </IfModule>
 
 # ---- Security headers ----
@@ -30,26 +23,8 @@
   Header always set Permissions-Policy "geolocation=(), microphone=(), camera=()"
   Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
   Header always set X-XSS-Protection "1; mode=block"
-  Header always set Content-Security-Policy "default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; script-src 'self'; media-src 'self'; frame-ancestors 'self'"
-
-  # Keep the dev/test subdomain out of search engines (env set above)
-  Header always set X-Robots-Tag "noindex, nofollow, noarchive" env=IS_DEV_HOST
-</IfModule>
-
-# ---- Serve a locked-down robots.txt on the dev/test subdomain ----
-<IfModule mod_rewrite.c>
-  RewriteCond %{HTTP_HOST} ^dev\. [NC]
-  RewriteCond %{REQUEST_URI} ^/robots\.txt$
-  RewriteRule ^ /robots-dev.txt [L]
-</IfModule>
-
-# ---- Serve index-dev.html (dev-domain OG/Twitter/canonical tags, so link
-# preview cards can fetch the logo image) in place of index.html on the
-# dev/test subdomain. Keep index-dev.html's body in sync with index.html —
-# see the comment at the top of that file.
-<IfModule mod_rewrite.c>
-  RewriteCond %{HTTP_HOST} ^dev\. [NC]
-  RewriteRule ^(index\.html)?$ /index-dev.html [L]
+  Header always set Content-Security-Policy "default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; script-src 'self'; media-src 'self'; form-action 'self'; object-src 'none'; base-uri 'self'; frame-ancestors 'self'; upgrade-insecure-requests"
+  Header always set Cross-Origin-Opener-Policy "same-origin"
 </IfModule>
 
 # ---- Disable directory listing ----

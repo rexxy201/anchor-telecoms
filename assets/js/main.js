@@ -12,11 +12,21 @@ if (contactForm) {
   const successMsg = contactForm.querySelector('.form-msg-success');
   const errorMsg = contactForm.querySelector('.form-msg-error');
   const submitBtn = contactForm.querySelector('button[type="submit"]');
+  const loadedAtField = contactForm.querySelector('input[name="loaded_at"]');
+
+  // Stamped once, at load — server checks this wasn't submitted implausibly fast.
+  if (loadedAtField) loadedAtField.value = String(Math.floor(Date.now() / 1000));
+
+  const rateLimitMsg = 'Please wait a moment before sending another message.';
+  const defaultErrorMsg = errorMsg ? errorMsg.textContent : '';
 
   contactForm.addEventListener('submit', async (event) => {
     event.preventDefault();
     if (successMsg) successMsg.style.display = 'none';
-    if (errorMsg) errorMsg.style.display = 'none';
+    if (errorMsg) {
+      errorMsg.style.display = 'none';
+      errorMsg.textContent = defaultErrorMsg;
+    }
 
     const originalLabel = submitBtn.textContent;
     submitBtn.disabled = true;
@@ -31,8 +41,10 @@ if (contactForm) {
       const data = await res.json().catch(() => ({ ok: false }));
       if (res.ok && data.ok) {
         contactForm.reset();
+        if (loadedAtField) loadedAtField.value = String(Math.floor(Date.now() / 1000));
         if (successMsg) successMsg.style.display = 'block';
       } else if (errorMsg) {
+        if (res.status === 429) errorMsg.textContent = rateLimitMsg;
         errorMsg.style.display = 'block';
       }
     } catch (err) {
